@@ -1,0 +1,12 @@
+[package]
+name = "application"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+uuid.workspace = true
+chrono.workspace = true
+serde.workspace = true
+anyhow.workspace = true
+core = { path = "../core" }
+domain = { path = "../domain" }

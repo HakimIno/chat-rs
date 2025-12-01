@@ -1,0 +1,11 @@
+[package]
+name = "interfaces"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+actix-web.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+chrono.workspace = true
