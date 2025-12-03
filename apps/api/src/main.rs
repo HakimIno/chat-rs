@@ -2,8 +2,8 @@ use actix_web::{middleware::Logger, web, App, HttpServer};
 use actix_cors::Cors;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
-mod config;
-mod handlers;
+pub mod config;
+pub mod handlers;
 mod middleware;
 mod websocket;
 
@@ -46,12 +46,12 @@ async fn main() -> anyhow::Result<()> {
             .wrap(Logger::default())
             .wrap(AuthMiddleware)
             .app_data(web::Data::new(db.clone()))
+            .app_data(web::Data::new(redis_conn.clone()))
             .app_data(config_data.clone())
             .app_data(connection_manager.clone())
             .service(health::health_check)
-            .service(auth::register)
-            .service(auth::login)
-            .service(auth::get_me)
+            .service(auth::request_otp)
+            .service(auth::verify_otp)
             .service(websocket_handler)
     })
     .bind(&server_addr)?
