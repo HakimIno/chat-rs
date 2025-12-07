@@ -49,10 +49,27 @@ async fn main() -> anyhow::Result<()> {
             .app_data(web::Data::new(redis_conn.clone()))
             .app_data(config_data.clone())
             .app_data(connection_manager.clone())
+            // Health
             .service(health::health_check)
+            // Auth - OTP
             .service(auth::request_otp)
             .service(auth::verify_otp)
+            // Auth - Profile & PIN
+            .service(auth::setup_profile)
+            .service(auth::setup_pin)
+            .service(auth::verify_pin)
+            // Auth - Token
+            .service(auth::refresh_token)
+            // Device Linking
+            .service(auth::create_linking_session)
+            .service(auth::complete_linking)
+            .service(auth::approve_linking)
+            // Device Management
+            .service(auth::list_devices)
+            .service(auth::unlink_device)
+            // Keys
             .service(keys::get_prekey_bundle)
+            // WebSocket
             .service(websocket_handler)
     })
     .bind(&server_addr)?

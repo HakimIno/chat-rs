@@ -13,6 +13,9 @@ mod m20251201000009_create_push_tokens;
 mod m20251202000010_create_otp_verifications;
 mod m20251205_alter_message_deliveries;
 mod m20251205_add_client_message_id_to_messages;
+mod m20251207000001_add_pin_to_users;
+mod m20251207000002_add_device_type_to_devices;
+mod m20251207000003_create_device_linking_sessions;
 
 pub struct Migrator;
 
@@ -33,6 +36,9 @@ impl MigratorTrait for Migrator {
             Box::new(m20251202000010_create_otp_verifications::Migration),
             Box::new(m20251205_alter_message_deliveries::Migration),
             Box::new(m20251205_add_client_message_id_to_messages::Migration),
+            Box::new(m20251207000001_add_pin_to_users::Migration),
+            Box::new(m20251207000002_add_device_type_to_devices::Migration),
+            Box::new(m20251207000003_create_device_linking_sessions::Migration),
         ]
     }
 }

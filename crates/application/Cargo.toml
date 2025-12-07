@@ -7,11 +7,15 @@ edition.workspace = true
 uuid.workspace = true
 chrono.workspace = true
 serde.workspace = true
+serde_json.workspace = true
 anyhow.workspace = true
 sea-orm.workspace = true
 redis.workspace = true
 jsonwebtoken.workspace = true
 rand.workspace = true
+argon2.workspace = true
+base64 = "0.22"
 infrastructure = { path = "../infrastructure" }
 core = { path = "../core" }
 domain = { path = "../domain" }
+

@@ -18,6 +18,11 @@ pub struct Model {
     pub signed_prekey_signature: Vec<u8>,
     pub last_seen_at: DateTimeWithTimeZone,
     pub created_at: DateTimeWithTimeZone,
+    // Device type and linking fields
+    pub device_type: i16,  // 1 = Primary, 2 = Linked
+    pub is_active: bool,
+    pub linked_at: Option<DateTimeWithTimeZone>,
+    pub linked_by_device_id: Option<i64>,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

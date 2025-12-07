@@ -22,3 +22,9 @@ pub struct SyncMessageDto {
     pub content: Vec<u8>,
     pub sent_at: i64,
 }
+
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
+pub enum DeliveryStatusType {
+    Delivered,
+    Read,
+}

@@ -43,9 +43,28 @@ pub enum WsMessage {
         recipient_device_id: i64,
         candidate: String,
     },
+    /// Update message delivery status
+    DeliveryStatus {
+        message_id: i64,
+        conversation_id: Uuid,
+        sender_id: Uuid, // The original sender who should receive this update
+        status: DeliveryStatusType,
+    },
+    /// Typing indicator
+    Typing {
+        conversation_id: Uuid,
+        recipient_id: Uuid,
+        is_typing: bool,
+    },
     /// Error message from server
     Error {
         code: String,
         message: String,
     },
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
+pub enum DeliveryStatusType {
+    Delivered,
+    Read,
 }

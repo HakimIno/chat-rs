@@ -21,6 +21,11 @@ pub struct Model {
     pub deleted_at: Option<DateTimeWithTimeZone>,
     pub created_at: DateTimeWithTimeZone,
     pub updated_at: DateTimeWithTimeZone,
+    // PIN/2FA fields
+    pub pin_hash: Option<String>,
+    pub registration_lock: bool,
+    pub registration_lock_expires_at: Option<DateTimeWithTimeZone>,
+    pub pin_set_at: Option<DateTimeWithTimeZone>,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
